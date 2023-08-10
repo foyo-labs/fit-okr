@@ -1,0 +1,13 @@
+{:system/config {:jdbc {:host     #or [#env POSTGRES_HOST "192.168.0.132"]
+                        :port     #long #or [#env POSTGRES_PORT 5432]
+                        :dbname   #profile {:default #or [#env POSTGRES_DB "okre"]
+                                            :test "okre"}
+                        :username #or [#env POSTGRES_USER "okre"]
+                        :password #or [#env POSTGRES_PASSWORD "okre"]}
+                 :http-port #or [#env PORT 3000]
+                 :jwt-secret #or [#env JWT_SECRET "fitokr-secret-jwt-string"]}
+ :postgres/db {:config #ig/ref :system/config}
+ :reitit/routes {:db #ig/ref :postgres/db
+                 :config #ig/ref :system/config}
+ :http/server {:config #ig/ref :system/config
+               :router #ig/ref :reitit/routes}}

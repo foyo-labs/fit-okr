@@ -1,0 +1,11 @@
+{:deps {:aliases [:frontend]}
+ :builds {:app {:target :browser
+                :modules {:main {:init-fn fitokr.core/init}}
+                :devtools {:after-load fitokr.core/reload
+                           :preloads [day8.re-frame-10x.preload]
+                           :http-root "resources/public"
+                           :http-port 3000}
+                :output-dir "resources/public/assets/js"
+                :asset-path "/assets/js"
+                :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}}}
+ :nrepl {:port 7002}}
