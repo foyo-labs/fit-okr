@@ -58,6 +58,7 @@
                  :username "okre"
                  :password "okre"}}
                :postgres/db {:config (ig/ref :system/config)}})
+  
   (def db (:postgres/db (ig/init config)))
 
 
