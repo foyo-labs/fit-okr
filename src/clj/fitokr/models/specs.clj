@@ -6,6 +6,7 @@
 ;;common spec
 (s/def ::id integer?)
 (s/def ::oid integer?)
+(s/def ::parent integer?)
 (s/def ::limit (s/and int? #(>= % 0)))
 (s/def ::offset (s/and int? #(>= % 0)))
 
@@ -29,6 +30,17 @@
 
 (s/def ::register-user (s/keys :req-un [::email ::password ::name]))
 (s/def ::login-user (s/keys :req-un [::email ::password]))
+
+;;setting spec
+(def all-setting-lables {:company-name :company-name})
+(def all-setting-groups {:account "账号" :general "通用"})
+
+;;(":company-name", "花儿与少年工作室", "string", ":g-general")
+(s/def ::create-setting-item (s/keys :req-un [::label ::content ::dtype ::section]))
+
+
+;;department spec
+(s/def ::create-department (s/keys :req-un [::name ::description ::parent ::position ::code ::ownid]))
 
 (comment
   (def objective {:owner 1 :name "oooo" :cycle "Q1" :position 1})

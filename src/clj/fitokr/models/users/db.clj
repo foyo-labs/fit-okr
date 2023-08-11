@@ -2,7 +2,6 @@
     (:require [fitokr.utils.query :as q]
               [integrant.core :as ig]
               [crypto.password.scrypt :as password]
-              [fitokr.services.config :refer [read-config]]
               [integrant.repl :as ig-repl :refer [halt]]))
 
 (defn get-all [db]
@@ -27,7 +26,8 @@
 
 (comment
   (require '[clojure.spec.alpha :as s]
-           '[clojure.spec.gen.alpha :as gen])
+           '[clojure.spec.gen.alpha :as gen]
+           '[fitokr.services.config :refer [read-config]])
 
   (def db (:postgres/db (ig/init (dissoc (read-config) :reitit/routes :http/server))))
 

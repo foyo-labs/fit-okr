@@ -42,8 +42,8 @@
   [& args]
   (let [command (first args)
         conf (get-store-config-from-jdbc (:jdbc (:system/config (read-config))))]
-    (println "luanch migration...")
-    (println conf)
+    ;; (println "luanch migration...")
+    ;; (println conf)
     (condp = command
       "create" (create conf (second args))
       "migrate" (migrate conf)
