@@ -7,31 +7,24 @@
 
 
 (defn get-all-by-objective-id
-  [db oid]
-  (print oid)
+  [db objective_id]
   (q/db-query! db {:select [:*]
-                       :from [:keyresults]
-                       :where [:= :oid oid]}))
+                       :from [:key_results]
+                       :where [:= :objective_id objective_id]}))
 
 
 (defn create [db data]
-  (q/db-query-one! db {:insert-into :keyresults
+  (q/db-query-one! db {:insert-into :key_results
                        :values [data]}))
 
 (comment
+  (require '[clojure.spec.alpha :as s]
+           '[clojure.spec.gen.alpha :as gen]
+           '[fitokr.services.config :refer [read-config]])
 
-  (def config {:system/config
-               {:jdbc
-                {:host "192.168.0.132"
-                 :dbtype "postgres"
-                 :port 5432
-                 :dbname "okre"
-                 :username "okre"
-                 :password "okre"}}
-               :postgres/db {:config (ig/ref :system/config)}})
-(def db (:postgres/db (ig/init config)))
-  
+  (def db (:postgres/db (ig/init (dissoc (read-config) :reitit/routes :http/server))))
+
   (get-all-by-objective-id db 2)
    ;; [::oid ::name ::position ::weight ::progress]
-  (create db {:oid 2 :name "训练不少于5个数据模型" :position 2 :weight 1.0 :progress 0})
+  (create db {:objective_id 2 :name "训练不少于5个数据模型" :description "NLP..." :position 1 :weight 1.0 :unit "%" })
   )
