@@ -49,24 +49,12 @@
 
 (comment
 
-  (def config {:system/config
-               {:jdbc
-                {:host "192.168.0.132"
-                 :dbtype "postgres"
-                 :port 5432
-                 :dbname "okre"
-                 :username "okre"
-                 :password "okre"}}
-               :postgres/db {:config (ig/ref :system/config)}})
-  
-  (def db (:postgres/db (ig/init config)))
+  (require '[clojure.spec.alpha :as s]
+           '[clojure.spec.gen.alpha :as gen]
+           '[fitokr.services.config :refer [read-config]])
 
+  (def db (:postgres/db (ig/init (dissoc (read-config) :reitit/routes :http/server))))
 
-  (get-all db :10 :0)
-  (get-all-with-keyresults db {:limit 10 :offset 0 :cycle "M6"})
-  (get-by-id db 1)
-  (create db {:owner 1 :name "实现NLP研发飞跃" :cycle "M6" :position 1})
-  (update-by-id db 2 {:cycle "Q1"})
-  (delete-by-id db 2)
-  (find-objectives-by-cycle db "M6")
+  (get-by-id db 2)
+  (create db {:name "实现NLP研发飞跃" :description "test desc" :cycle_id 1 :sequence 1 :dept_id 1 :actived true :parent_id 1 :user_id 0})
   )

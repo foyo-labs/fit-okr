@@ -2,6 +2,7 @@
  :deps {;; core
         org.clojure/clojure {:mvn/version "1.10.3"}
         org.clojure/core.async {:mvn/version "1.2.603"}
+        clojure.java-time/clojure.java-time {:mvn/version "1.2.0"}
         nrepl/nrepl {:mvn/version "1.0.0"}
         crypto-password/crypto-password {:mvn/version "0.3.0"}
        ;; config

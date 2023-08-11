@@ -1,3 +1,4 @@
+-- 部门/组
 CREATE TABLE IF NOT EXISTS departments(
     id bigserial NOT NULL PRIMARY KEY,
     name varchar(20) not null,

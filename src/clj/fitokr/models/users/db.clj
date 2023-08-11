@@ -32,7 +32,7 @@
   (def db (:postgres/db (ig/init (dissoc (read-config) :reitit/routes :http/server))))
 
   (def pwd (password/encrypt "a123456"))
-  (def user1 {:password pwd :name "AsOne" :email "37505218@qq.com"})
+  (def user1 {:password pwd :name "AsOne" :email "37505218@qq.com" :actived true})
 
   (create db user1)
 

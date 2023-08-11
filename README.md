@@ -9,6 +9,10 @@ FitOKR
 
 项目使用Clojure全栈实现，目的是学习Clojure的函数编程。
 
+## OKR资源
+
+* [awesome-okr](https://github.com/domenicosolazzo/awesome-okr)
+
 ### 后端
 
 * Clojure
