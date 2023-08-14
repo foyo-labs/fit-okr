@@ -43,7 +43,7 @@
   "using map collect assoc sub collect"
   [db query]
   (let [objectives (get-all db (:limit query) (:offset query) )
-        results (map #(assoc % :keyresults (krs-db/get-all-by-objective-id db (:id %))) objectives)]
+        results (map #(assoc % :key_results (krs-db/get-all-by-objective-id db (:id %))) objectives)]
     results))
 
 
@@ -57,4 +57,5 @@
 
   (get-by-id db 2)
   (create db {:name "实现NLP研发飞跃" :description "test desc" :cycle_id 1 :sequence 1 :dept_id 1 :actived true :parent_id 1 :user_id 0})
+  (get-all-with-keyresults db {:limit 10 :offset 0})
   )

@@ -4,31 +4,30 @@ FitOKR
 
 一个简单的OKR实施开源项目，为中小团队OKR落地提供开源系统支持。
 
+## OKR资源
+
+* [awesome-okr](https://github.com/domenicosolazzo/awesome-okr)
 
 ## 技术栈
 
 项目使用Clojure全栈实现，目的是学习Clojure的函数编程。
 
-## OKR资源
-
-* [awesome-okr](https://github.com/domenicosolazzo/awesome-okr)
-
 ### 后端
 
-* Clojure
-* Integrant
-* Honeysql
-* Next.jdbc
-* Postgresql
-* Reitit + Ring
+* [Clojure](http://clojure.org)
+* [Integrant](https://github.com/weavejester/integrant)
+* [Honeysql](https://github.com/seancorfield/honeysql)
+* [Next.jdbc](https://github.com/seancorfield/next-jdbc)
+* [Postgresql](https://www.postgresql.org)
+* [Reitit + Ring](https://github.com/metosin/reitit/)
 
 ### 前端
 
-* ClojureScript
-* Reagent
-* Re-frame
-* Antizer
-* Shadow-cljs
+* [ClojureScript](http://clojure.org)
+* [Reagent](http://reagent-project.github.io)
+* [Re-frame](http://day8.github.io/re-frame/re-frame/)
+* [Antizer](https://github.com/christoph-frick/antizer)
+* [Shadow-cljs](https://github.com/thheller/shadow-cljs)
 
 
 

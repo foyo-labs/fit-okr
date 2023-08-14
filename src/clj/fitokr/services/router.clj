@@ -1,13 +1,14 @@
 (ns fitokr.services.router
-    (:require [clojure.java.io :as io]
-              [taoensso.timbre :as log]
-              [integrant.core :as ig]
-              [reitit.ring :as ring]
-              [muuntaja.core :as m]
-              [reitit.coercion.spec :refer [coercion]]
-              [fitokr.api.core :as api]
-              [fitokr.router.middleware :refer [global-middleware]]
-              [fitokr.router.exception :refer [handle-exception]]))
+  (:require [clojure.java.io :as io]
+            [taoensso.timbre :as log]
+            [integrant.core :as ig]
+            [reitit.ring :as ring]
+            [muuntaja.core :as m]
+            [reitit.coercion.spec :refer [coercion]]
+            [fitokr.api.core :as api]
+            [fitokr.router.middleware :refer [global-middleware]]
+            [fitokr.router.exception :refer [handle-exception]]
+            [fitokr.router.frontend :refer [create-frontend-handler]]))
 
 (defn index []
   (slurp (io/resource "public/index.html")))
@@ -27,6 +28,7 @@
             :middleware global-middleware}})
    (ring/routes
     (ring/redirect-trailing-slash-handler)
+    (create-frontend-handler)
     (ring/create-default-handler
      {:not-found (handle-exception 404 "Route not found")
       :method-not-allowed (handle-exception 405 "Method not allowed")
