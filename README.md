@@ -6,7 +6,8 @@ FitOKR
 
 ## OKR资源
 
-* [awesome-okr](https://github.com/domenicosolazzo/awesome-okr)
+* [Awesome-okr](https://github.com/domenicosolazzo/awesome-okr)
+* [OKR-Examples](https://okrstudio.com/okr-examples/)
 
 ## 技术栈
 
