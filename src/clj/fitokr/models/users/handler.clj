@@ -4,12 +4,7 @@
             [ring.util.response :as rr]
             [clojure.spec.alpha :as s]
             [fitokr.models.specs :as spec]
-            [integrant.core :as ig]
-            [taoensso.timbre :as log]
-            [fitokr.api.system :as system]
-            [integrant.repl.state :as state]
-            [fitokr.services.config :as config]
-            [integrant.repl :as ir]))
+            [taoensso.timbre :as log]))
 
 (defn handle-get-all [{:keys [env]}]
   (let [{:keys [db]} env
@@ -39,23 +34,21 @@
       (rr/response {:error "Error create user"}))))
 
 (comment
-  (require '[clojure.spec.alpha :as s]
-           '[fitokr.services.config :refer [read-config]]
-           '[integrant.core :as ig]
-           '[integrant.repl :as ir :refer [halt, go]]
-           '[integrant.repl.state :as state])
+  ;; (require '[fitokr.services.config :as r]
+  ;;          '[integrant.repl :as ir]
+  ;;          '[integrant.repl.state :as state])
 
-  (halt)
-  (ir/set-prep!
-   (fn []
-     (dissoc (read-config) :reitit/routes :http/server)))
-  (ir/go)
+  ;; (ir/set-prep!
+  ;;  (fn []
+  ;;    (dissoc (r/read-config) :reitit/routes :http/server)))
+  
+  ;; (ir/go)
 
-  ;;构参
-  (def env {:env {:db (:postgres/db state/system)}})
-  (print env)
-
-
-  (handle-get-all env)
+  ;; ;;构参
+  ;; (def env {:env {:db (:postgres/db state/system)}})
+  ;; (print env)
+  ;; (handle-get-all env)
+  
+  ;; (ir/halt)
 
   )

@@ -2,8 +2,7 @@
     (:require [fitokr.utils.query :as q]
               [taoensso.timbre :as log]
               [integrant.core :as ig]
-              [crypto.password.scrypt :as password]
-              [integrant.repl :as ig-repl :refer [halt]]))
+              [crypto.password.scrypt :as password]))
 
 (defn get-all [db]
   (log/info db)
@@ -40,6 +39,4 @@
 
   (find-user-by-email db "37505218@qq.com")
   (find-user-by-id db 1)
-
-  (halt)
   )
