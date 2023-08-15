@@ -5,7 +5,11 @@
             [clojure.spec.alpha :as s]
             [fitokr.models.specs :as spec]
             [integrant.core :as ig]
-            [taoensso.timbre :as log]))
+            [taoensso.timbre :as log]
+            [fitokr.api.system :as system]
+            [integrant.repl.state :as state]
+            [fitokr.services.config :as config]
+            [integrant.repl :as ir]))
 
 (defn handle-get-all [{:keys [env]}]
   (let [{:keys [db]} env
@@ -37,12 +41,21 @@
 (comment
   (require '[clojure.spec.alpha :as s]
            '[fitokr.services.config :refer [read-config]]
-           '[integrant.core :as ig])
+           '[integrant.core :as ig]
+           '[integrant.repl :as ir :refer [halt, go]]
+           '[integrant.repl.state :as state])
 
-  (ig/halt! :postgres/db)
+  (halt)
+  (ir/set-prep!
+   (fn []
+     (dissoc (read-config) :reitit/routes :http/server)))
+  (ir/go)
 
-  (def env {:env {:db (:postgres/db (ig/init (dissoc (read-config) :reitit/routes :http/server)))}})
-  
+  ;;构参
+  (def env {:env {:db (:postgres/db state/system)}})
+  (print env)
+
+
   (handle-get-all env)
 
   )
