@@ -3,12 +3,15 @@
             [fitokr.utils.auth :as auth]
             [ring.util.response :as rr]
             [clojure.spec.alpha :as s]
-            [fitokr.models.specs :as spec]))
+            [fitokr.models.specs :as spec]
+            [integrant.core :as ig]
+            [taoensso.timbre :as log]))
 
 (defn handle-get-all [{:keys [env]}]
   (let [{:keys [db]} env
         result (user.db/get-all db)]
-    (rr/response (dissoc result :password))))
+    (log/info result)
+    (rr/response (map #(dissoc % :password) result))))
 
 (defn handle-login [{:keys [env parameters]}]
   (let [{:keys [db jwt-secret]} env
@@ -30,3 +33,16 @@
       (let [result (user.db/create db (assoc data :status 0))]
         (rr/response {:id (:id result)}))
       (rr/response {:error "Error create user"}))))
+
+(comment
+  (require '[clojure.spec.alpha :as s]
+           '[fitokr.services.config :refer [read-config]]
+           '[integrant.core :as ig])
+
+  (ig/halt! :postgres/db)
+
+  (def env {:env {:db (:postgres/db (ig/init (dissoc (read-config) :reitit/routes :http/server)))}})
+  
+  (handle-get-all env)
+
+  )

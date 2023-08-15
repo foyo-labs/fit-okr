@@ -1,10 +1,12 @@
 (ns fitokr.models.users.db
     (:require [fitokr.utils.query :as q]
+              [taoensso.timbre :as log]
               [integrant.core :as ig]
               [crypto.password.scrypt :as password]
               [integrant.repl :as ig-repl :refer [halt]]))
 
 (defn get-all [db]
+  (log/info db)
   (q/db-query! db {:select [:*]
                    :from [:users]}))
 
