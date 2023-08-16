@@ -6,7 +6,7 @@
   []
   [:div {:class "flex justify-center text-center lg:pb-7 lg:pt-5 lg:text-left"}
    [:div {:class "flex max-w-[37rem] flex-col py-16 lg:pb-11 lg:pt-12"}
-    [:h1 {:class "mt-6 text-[1.75rem] font-extrabold leading-9 tracking-tight text-slate-900 md:text-4xl"} "S-OKR是您实施OKR理念的理想起点，助力组织落地OKR。"]
+    [:h1 {:class "mt-6 text-[1.75rem] font-extrabold leading-9 tracking-tight text-slate-900 md:text-4xl"} "FIT-OKR是您实施OKR理念的理想起点，助力组织落地OKR。"]
     [:div {:class "order-first flex items-center justify-center gap-4 text-[0.8125rem] leading-6 text-slate-500 lg:justify-start"}
      [:p {:class "mb-0"} "开源项目"]
      [:svg {:viewBox "0 0 2 2" :aria-hidden "true" :class "w-0.5 fill-current"}

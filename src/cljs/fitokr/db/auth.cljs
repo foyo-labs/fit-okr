@@ -19,10 +19,26 @@
 (rf/reg-event-fx
  ::login
  (fn [_ [_ data]]
-   {:fx []}))
+   {:fx [[:dispatch [::auth-success data]]]}))
 
+(rf/reg-event-fx
+ ::register
+ (fn [_ [_ data]]
+   {:fx [[:dispatch [::auth-success data] ]]}))
+
+(rf/reg-event-fx
+ ::auth-success
+ (fn [{:keys [db]} [_ data]]
+   {:db (assoc-in db [::auth :account] data)
+    :fx [[:set-local-storage [:account/token (:account/token data)]]]}))
 
 (rf/reg-sub
  ::account
  (fn [db]
    (get-in db [::auth :account])))
+
+(rf/reg-sub
+ ::admin-account
+ (fn [db]
+  ;;  (get-in db [::auth :account :admin])
+   true))
