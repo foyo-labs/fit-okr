@@ -9,6 +9,14 @@
   (q/db-query-one! db {:insert-into :cycles
                        :values [data]}))
 
+(defn get-cycle-by-id
+  [db id]
+  (q/db-query-one! db {:select [:*]
+                   :from [:cycles]
+                   :where [:= :id id]}))
+
+(defn create-default-cycles []
+  :created)
 
 (comment
   (require '[clojure.spec.alpha :as s]

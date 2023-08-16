@@ -13,6 +13,24 @@
                   {:exception (.getClass exception)
                    :data (ex-data exception)}))})
 
+
+(defn response
+  ([status message request]
+   (response status message request nil))
+  ([status message request exception]
+   {:status status
+    :body (merge
+           {:success false
+            :message message
+            :uri (:uri request)}
+           (when exception
+             exception))}))
+
+(defn not-found [request]
+  (response 404 "Resource not found" request))
+
+
+
 (defn handle-exception [status message]
   (fn
     ([request]

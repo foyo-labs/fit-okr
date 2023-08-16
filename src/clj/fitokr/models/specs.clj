@@ -42,6 +42,10 @@
 ;;department spec
 (s/def ::create-department (s/keys :req-un [::name ::description ::parent ::position ::code ::ownid]))
 
+
+;; Initialize spec
+(s/def ::create-initial-data (s/keys :req-un [::company-name ::cycle]))
+
 (comment
   (def objective {:owner 1 :name "oooo" :cycle "Q1" :position 1})
   (s/valid? ::create-objective objective)

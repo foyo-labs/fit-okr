@@ -1,7 +1,7 @@
 (ns fitokr.utils.query
   (:require [next.jdbc :as jdbc]
             [next.jdbc.result-set :as rs]
-            [honeysql.core :as sql]))
+            [honey.sql :as sql]))
 
 (defn db-query! [db query]
   (jdbc/execute! db 
@@ -21,3 +21,19 @@
                        (sql/format query)
                        {:return-keys true
                         :builder-fn rs/as-unqualified-maps}))
+
+
+(defn- make-query
+  [f db sql-map]
+  (f db
+     (sql/format sql-map)
+     {:return-keys true
+      :builder-fn rs/as-unqualified-maps}))
+
+(defn query!
+  [& args]
+  (apply make-query jdbc/execute! args))
+
+(defn query-one!
+  [& args]
+  (apply make-query jdbc/execute-one! args))
