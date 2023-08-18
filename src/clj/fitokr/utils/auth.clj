@@ -5,12 +5,12 @@
 
 (defn user->response
   [user secret]
-  (let [sanitized (dissoc user :password-hash)
+  (let [sanitized (dissoc user :password)
         token (jwt/sign sanitized secret)]
     (assoc sanitized :token token)))
 
 (defn password-match?
   [user password]
   (when (and user
-             (check password (:password-hash user)))
+             (check password (:password user)))
     user))

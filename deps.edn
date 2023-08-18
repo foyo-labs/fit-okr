@@ -30,7 +30,8 @@
         ring/ring-jetty-adapter {:mvn/version "1.9.3"}
         ring-cors/ring-cors {:mvn/version "0.1.13"}
         ring/ring {:mvn/version "1.9.5"}}
- :aliases {:build {:ns-default build
+ :aliases {:server {:main-opts ["-m" "fitokr.core"]}
+           :build {:ns-default build
                    :deps {io.github.clojure/tools.build {:git/tag "v0.9.4" :git/sha "76b78fe"}}}
            :migrate {:main-opts ["-m" "fitokr.migrations.core"]}
            :dev {:extra-paths ["dev"]

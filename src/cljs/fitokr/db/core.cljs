@@ -6,7 +6,7 @@
             [fitokr.db.auth :as auth]
             [fitokr.db.okr :as okr]))
 
-(def base-url "http://localhost:3000")
+(def base-url "http://localhost:8080")
 
 (def app-db
   (merge {}

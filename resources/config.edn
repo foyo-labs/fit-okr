@@ -4,7 +4,7 @@
                                             :test "fit_okr_db"}
                         :username #or [#env POSTGRES_USER "fit_okr"]
                         :password #or [#env POSTGRES_PASSWORD "fit_okr"]}
-                 :http-port #or [#env PORT 3000]
+                 :http-port #or [#env PORT 8080]
                  :jwt-secret #or [#env JWT_SECRET "fitokr-secret-jwt-string"]}
  :postgres/db {:config #ig/ref :system/config}
  :reitit/routes {:db #ig/ref :postgres/db

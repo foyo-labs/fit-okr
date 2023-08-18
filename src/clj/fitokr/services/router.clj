@@ -18,8 +18,6 @@
   (log/info "initializing routes")
   (ring/ring-handler 
    (ring/router
-    ["" {:handler (fn [_] {:body (index) :status 200})}])
-   (ring/router
     api/routes
     {:data {:env {:db db
                   :jwt-secret (:jwt-secret config)}

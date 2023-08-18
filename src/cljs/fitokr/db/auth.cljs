@@ -19,7 +19,11 @@
 (rf/reg-event-fx
  ::login
  (fn [_ [_ data]]
-   {:fx [[:dispatch [::auth-success data]]]}))
+   {:fx [[:dispatch [:http {:url "/api/users/login"
+                            :method :post
+                            :data data
+                            :on-success [::auth-success]
+                            :on-failure [:http-failure]}]]]}))
 
 (rf/reg-event-fx
  ::register

@@ -1,5 +1,7 @@
 (ns fitokr.core
-    (:require [fitokr.services.config :as config]))
+    (:require [integrant.core :as ig]
+              [fitokr.services.config :as config]))
 
 (defn -main []
-  (config/read-config :prod))
+  (let [config (config/read-config :prod)]
+    (ig/init config)))

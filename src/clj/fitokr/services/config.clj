@@ -19,6 +19,7 @@
 (defn read-config
   ([] (read-config :prod))
   ([profile]
+   (log/info "start read config file...")
    (aero/read-config
     (io/resource "config.edn")
     {:profile profile})))

@@ -2,19 +2,21 @@
     (:require [fitokr.utils.query :as q]
               [taoensso.timbre :as log]
               [integrant.core :as ig]
-              [crypto.password.scrypt :as password]))
+              [buddy.hashers :refer [encrypt]]))
 
 (defn get-all [db]
   (log/info db)
   (q/db-query! db {:select [:*]
                    :from [:users]}))
 
-(defn create [db data]
-  (q/db-query-one! db {:insert-into :users
-                       :values [data]}))
+(defn create-user [db data]
+  (let [password-hash (encrypt (:password data))
+        user (assoc data :password password-hash)]
+    (q/db-query-one! db {:insert-into :users
+                         :values [user]})))
 
 (defn find-user-by-email [db email]
-  (q/db-query-one! db {:select [:id :password]
+  (q/db-query-one! db {:select [:id :email :password]
                        :from [:users]
                        :where [:= :email email]}))
 
