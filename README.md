@@ -29,7 +29,7 @@ FitOKR
 * [Re-frame](http://day8.github.io/re-frame/re-frame/)
 * [Antizer](https://github.com/christoph-frick/antizer)
 * [Shadow-cljs](https://github.com/thheller/shadow-cljs)
-
+* [Tailwind](https://tailwind.nodejs.cn/docs/transition-timing-function)
 
 
 ## 功能
