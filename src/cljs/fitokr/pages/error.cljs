@@ -1,0 +1,1 @@
+(ns fitokr.pages.error)

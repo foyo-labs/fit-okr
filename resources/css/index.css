@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Application CSS */
+.container-auth-bg {
+    background-image: url("/assets/images/bridge.svg");
+    background-size: max(min(1728px, 260vh), 100%) auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}

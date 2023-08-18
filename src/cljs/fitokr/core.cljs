@@ -3,13 +3,13 @@
    [reagent.dom :as rdom]
    [re-frame.core :as re-frame]
    [fitokr.db.core :as events]
-   [fitokr.components.core :refer [app]]))
+   [fitokr.pages.layout :refer [layout]]))
 
 
 (defn ^:dev/after-load mount-root []
   (re-frame/clear-subscription-cache!)
   (let [root-el (.getElementById js/document "app")]
-    (rdom/render [app] root-el)))
+    (rdom/render [layout] root-el)))
 
 
 (defn ^:export init []
