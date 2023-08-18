@@ -5,12 +5,13 @@
             [fitokr.services.config :as c]
             [integrant.repl.state :as state]))
 
-(defn start-interactive []
+(defn start-interactive [server]
   (tools-ns/set-refresh-dirs "dev" "server/src")
   (ig-repl/set-prep!
    (fn []
-     ;; exclude routes and server.
-     (dissoc (c/read-config) :reitit/routes :http/server)))
+     (if server
+       (c/read-config)
+       (dissoc (c/read-config) :reitit/routes :http/server))))
   (go)
   :ready!)
 
@@ -18,9 +19,16 @@
 
 (defn restart []
   (halt)
-  (tools-ns/refresh :after 'core/start-interactive))
+  (tools-ns/refresh :after 'core/start-interactive false))
+
+
+(defn start-http []
+  (start-interactive true))
 
 (defn halt!! [] (halt))
 
 (comment
-  (print (get-repl-db)))
+  (print (get-repl-db))
+  (start-http)
+  (halt)
+  )

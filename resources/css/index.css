@@ -9,3 +9,8 @@
     background-repeat: no-repeat;
     background-position: bottom;
 }
+
+.header-logo {
+    background-image: url("/assets/images/logo.svg");
+    background-repeat: no-repeat;
+}

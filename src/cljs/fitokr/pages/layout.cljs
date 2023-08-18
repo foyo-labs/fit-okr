@@ -13,7 +13,7 @@
         login? @(rf/subscribe [::auth/account])
         page (if login? active-page :login)
         page-component (views/pages page)]
-    [:div {:class "flex flex-col justify-center w-full container-bg"}
+    [:div {:class "flex flex-col justify-center w-full h-screen container-bg"}
      (when login? [header-view])
      (if login?
        [:div {:class "aside flex grow flex-row bg-white overflow-x-hidden overflow-y-hidden relative"}

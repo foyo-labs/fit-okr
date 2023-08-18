@@ -9,7 +9,7 @@
     (log/info "server started on port" port)
     (jetty/run-jetty router {:port port})))
 
-(defmethod ig/halt-key! :http/server
+(defmethod ig/halt-key! :http/server 
   [_ server]
   (log/info "server stopping")
-  (server :timeout 100))
+  (.stop server))
