@@ -5,7 +5,6 @@
               [buddy.hashers :refer [encrypt]]))
 
 (defn get-all [db]
-  (log/info db)
   (q/db-query! db {:select [:*]
                    :from [:users]}))
 
@@ -16,7 +15,7 @@
                          :values [user]})))
 
 (defn find-user-by-email [db email]
-  (q/db-query-one! db {:select [:id :email :password]
+  (q/db-query-one! db {:select [:id :email :authority :password]
                        :from [:users]
                        :where [:= :email email]}))
 
@@ -37,7 +36,7 @@
   (def pwd (password/encrypt "a123456"))
   (def user1 {:password pwd :name "AsOne" :email "37505218@qq.com" :actived true})
 
-  (create db user1)
+  (create-user db user1)
 
   (find-user-by-email db "37505218@qq.com")
   (find-user-by-id db 1)

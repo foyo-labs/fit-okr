@@ -1,5 +1,6 @@
 (ns fitokr.api.users
-  (:require [fitokr.models.users.handler :refer [handle-login, handle-create-user]]
+  (:require [fitokr.models.users.handler :refer [handle-login]]
+            [fitokr.router.middleware :refer [authorize-middleware]]
             [fitokr.models.specs :as spec]))
 
 
@@ -7,7 +8,8 @@
   ["/users"
    ["/login" {:post {:summary "login with email and password"
                      :handler handle-login
-                     :parameters {:body ::spec/login-user}} }]
-   ["/sign" {:post {:summary "sign up user with email and password"
-                    :handler handle-create-user
-                    :parameters {:body ::spec/register-user}}}]])
+                     :parameters {:body ::spec/login-user}}}]
+   ["/" {:post {:summary "create user info by admin"}
+         :get {:summary "query users by paramaters"}
+         :delete {:summary "disable user"}}
+    :middleware [authorize-middleware ["ADMIN"]]]])

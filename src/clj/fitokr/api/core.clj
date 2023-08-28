@@ -1,7 +1,8 @@
 (ns fitokr.api.core
   (:require [fitokr.api.objectives :as objectives]
             [fitokr.api.users :as users]
-            [fitokr.api.system :as system]))
+            [fitokr.api.system :as system]
+            [fitokr.api.departments :as departments]))
 
 (def health-route
   ["/health-check"
@@ -14,4 +15,5 @@
     health-route
     system/system-routes
     objectives/objective-routes
-    users/user-routes]])
+    users/user-routes
+    departments/departments-routes]])

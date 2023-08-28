@@ -7,11 +7,16 @@
             [fitokr.components.aside :refer [aside-view]]))
 
 
+(defn admin-layout [])
+(defn user-layout []
+  )
+
 
 (defn layout []
   (let [active-page @(rf/subscribe [::ui/active-page])
         login? @(rf/subscribe [::auth/account])
         page (if login? active-page :login)
+        ;; admin-page? ()
         page-component (views/pages page)]
     [:div {:class "flex flex-col justify-center w-full h-screen container-bg"}
      (when login? [header-view])

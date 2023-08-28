@@ -7,8 +7,7 @@
            '[fitokr.models.users.handler :as users]
            '[fitokr.models.settings.handler :as settings]
            '[fitokr.models.objectives.handler :as objectives]
-           '[fitokr.models.departments.handler :as departments]
-           '[buddy.hashers :refer [encrypt]])
+           '[fitokr.models.departments.handler :as departments])
 
   (start-interactive false)
   (def params-setting {:env {:db (get-repl-db)}
@@ -20,8 +19,8 @@
   (users/handle-get-all params)
 
   (def login-params {:env {:db (get-repl-db)}
-                     :parameters {:body {:email "37505218@qq.com" :password "a123456"}}}) 
-  
+                     :parameters {:body {:email "37505218@qq.com" :password "a123456"}}})
+
   (users/handle-login login-params)
 
 

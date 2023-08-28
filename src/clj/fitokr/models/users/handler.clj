@@ -12,6 +12,12 @@
     (log/info result)
     (rr/response (map #(dissoc % :password) result))))
 
+(defn handle-delete-all [{:keys [env]}]
+  (let [{:keys [db]} env
+        result (user.db/get-all db)]
+    (log/info result)
+    (rr/response (map #(dissoc % :password) result))))
+
 (defn handle-login [{:keys [env parameters]}]
   (let [{:keys [db jwt-secret]} env
         {:keys [email password]} (:body parameters)]

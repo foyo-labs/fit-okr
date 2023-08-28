@@ -44,5 +44,7 @@
 (rf/reg-sub
  ::admin-account
  (fn [db]
-  ;;  (get-in db [::auth :account :admin])
-   true))
+   (let [authority (get-in db [::auth :account :authority])
+         admin? (some #(= "ADMIN" %) authority)]
+    ;;  (js/console.log admin? "haha" authority)
+     admin?)))
